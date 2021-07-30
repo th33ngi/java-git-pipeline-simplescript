@@ -15,7 +15,7 @@ pipeline {
         stage('Clone release') {
             steps {
                 echo '# cloning the application...'
-                git branch: 'main', credentialsId: 'git_credentials', url: 'https://github.com/th33ngi/focusservices-pom-java.git'
+                git branch: 'main', credentialsId: 'git_credentials', url: 'https://github.com/th33ngi/java-git-pipeline-simplescript.git'
             }
         }
         
