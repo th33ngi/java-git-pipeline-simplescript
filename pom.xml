@@ -8,6 +8,7 @@
   <artifactId>javagitpipeline-spscript</artifactId>
   <version>1.0-SNAPSHOT</version>
 
+<!-- test -->
   <name>javagitpipeline-spscript</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
