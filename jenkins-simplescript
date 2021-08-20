@@ -44,7 +44,7 @@ pipeline {
             steps {
                 echo '# teting the application...'
                 loadProperties()
-                echo "Browser: ${prop}"
+                //echo "Browser: ${prop}"
                 bat 'mvn compile test' 
             }
         }
