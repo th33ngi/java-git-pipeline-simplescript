@@ -13,19 +13,21 @@ def properties = null
 def loadProperties() {
     node {
         checkout scm
-        properties = readProperties file: 'config.properties'
+        properties = readProperties file: 'C:/Users/Administrator/AppData/Local/Jenkins/.jenkins/workspace/jenkins-properties-test@2/src/main/java/com/focus/config/config.properties'
         echo "Browser ${properties.browser}"
     }
 }
 
 pipeline {
-    agent any
+    agent none
     
     environment {
         maven = 'default'
     }
     
     stages {
+    	agent any
+        
         stage ('prepare') {
             steps {
                 script {
