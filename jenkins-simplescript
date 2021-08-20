@@ -19,16 +19,17 @@ def loadProperties() {
 }
 
 pipeline {
-    agent none
+    agent 
     
     environment {
         maven = 'default'
     }
     
     stages {
-    	agent any
         
         stage ('prepare') {
+            agent any
+            
             steps {
                 script {
                     loadProperties()
