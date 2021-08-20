@@ -14,7 +14,7 @@ def loadProperties() {
     node {
         checkout scm
         properties = readProperties file: 'C:/Users/Administrator/AppData/Local/Jenkins/.jenkins/workspace/jenkins-properties-test@2/src/main/java/com/focus/config/config.properties'
-        echo "Browser ${properties.browser}"
+        echo "Browser: ${properties.browser}"
     }
 }
 
@@ -26,15 +26,6 @@ pipeline {
     }
     
     stages {
-        
-        stage ('prepare') {
-            steps {
-                script {
-                    loadProperties()
-                    echo "Browser ${properties.browser}"
-                }
-            }
-        }
         
         stage('Initialize') {
             steps {
@@ -59,6 +50,8 @@ pipeline {
         stage('Run test plan') { 
             steps {
                 echo '# teting the application...'
+                loadProperties()
+                echo 'Browser: %properties.browser%'
                 bat 'mvn compile test' 
             }
         }
