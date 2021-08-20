@@ -15,7 +15,7 @@ def setProperties() {
         checkout scm
         properties = readProperties file: './src/main/java/com/focus/config/config.properties'
         echo "Browser: ${properties.browser}"
-        prop = ${properties.browser}"
+        prop = ${properties.browser}
     }
 }
 
