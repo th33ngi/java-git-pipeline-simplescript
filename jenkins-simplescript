@@ -1,14 +1,5 @@
 def properties = null     
 def prop = null
-/*def loadProperties() {
-    node {
-        checkout scm
-        properties = new Properties()
-        File propertiesFile = new File("${workspace}/config.properties")
-        properties.load(propertiesFile.newDataInputStream())
-        echo "Immediate one ${properties.browser}"
-    }
-}*/
 
 def loadProperties() {
     node {
@@ -52,8 +43,8 @@ pipeline {
         stage('Run test plan') { 
             steps {
                 echo '# teting the application...'
-                loadProperties()
-                echo "Browser: ${properties.browser}"
+                //loadProperties()
+                echo "Browser: ${prop}"
                 bat 'mvn compile test' 
             }
         }
