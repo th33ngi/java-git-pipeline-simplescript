@@ -47,7 +47,7 @@ pipeline {
         stage('Run test plan') { 
             steps {
                 echo '# teting the application...'
-                //loadProperties()
+                loadProperties()
                 bat 'mvn compile test' 
             }
         }
