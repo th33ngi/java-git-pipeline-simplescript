@@ -19,7 +19,7 @@ def loadProperties() {
 }
 
 pipeline {
-    agent 
+    agent none
     
     environment {
         maven = 'default'
