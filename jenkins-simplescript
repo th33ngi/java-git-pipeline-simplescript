@@ -1,5 +1,10 @@
 
-properties([parameters([choice(choices: ['windows', 'linux'], name: 'System'), choice(choices: ['chrome','firefox'], name: 'Browser'), choice(choices: ['qe','dev'], name: 'Environment')])])
+properties([parameters([
+	choice(choices: ['windows', 'linux'], name: 'System'), 
+	choice(choices: ['chrome','firefox'], name: 'Browser'), 
+	choice(choices: ['qe','dev'], name: 'Environment'), 
+	choice(choices: ['main','dev'], name: 'Branch')
+])])
 
 pipeline {
     agent any
