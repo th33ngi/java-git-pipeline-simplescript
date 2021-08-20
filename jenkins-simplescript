@@ -6,7 +6,7 @@ def loadProperties() {
     node {
         checkout scm
         path = './src/main/java/com/focus/config'
-        props = readFile file: "${path}/config.properties"
+        props = readProperties file: "${path}/config.properties"
         echo "${props}"
         setProp = writeFile file: "config.properties", text: path
         //properties = readProperties file: './src/main/java/com/focus/config/config.properties'
