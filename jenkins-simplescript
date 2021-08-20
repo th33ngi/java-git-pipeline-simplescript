@@ -1,5 +1,5 @@
 def properties = null     
-
+def prop = null
 /*def loadProperties() {
     node {
         checkout scm
@@ -50,8 +50,8 @@ pipeline {
         stage('Run test plan') { 
             steps {
                 echo '# teting the application...'
-                loadProperties()
-                echo "Browser: ${properties.browser}"
+                echo "loadProperties().${properties.browser}"
+                //echo "Browser: ${properties.browser}"
                 bat 'mvn compile test' 
             }
         }
