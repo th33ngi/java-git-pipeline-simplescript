@@ -1,11 +1,21 @@
 properties = null     
 
-def loadProperties() {
+/*def loadProperties() {
     node {
         checkout scm
         properties = new Properties()
         File propertiesFile = new File("${workspace}/config.properties")
         properties.load(propertiesFile.newDataInputStream())
+        echo "Immediate one ${properties.browser}"
+    }
+}*/
+
+properties = null
+
+def loadProperties() {
+    node {
+        checkout scm
+        properties = readProperties file: '${workspace}/config.properties'
         echo "Immediate one ${properties.browser}"
     }
 }
@@ -17,8 +27,18 @@ pipeline {
         maven = 'default'
     }
     
-    stages {
+    /*stages {
     	stage ('prepare') {
+            steps {
+                script {
+                    loadProperties()
+                    echo "Later one ${properties.browser}"
+                }
+            }
+        }*/
+        stage ('prepare') {
+            agent any
+
             steps {
                 script {
                     loadProperties()
