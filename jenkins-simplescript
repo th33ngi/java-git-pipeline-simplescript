@@ -13,7 +13,7 @@ properties = null
 def loadProperties() {
     node {
         checkout scm
-        properties = readProperties file: '${workspace}/config.properties'
+        properties = readProperties file: '/config.properties'
         echo "Immediate one ${properties.browser}"
     }
 }
