@@ -10,7 +10,7 @@ def prop = null
     }
 }*/
 
-def setProperties() {
+def loadProperties() {
     node {
         checkout scm
         properties = readProperties file: './src/main/java/com/focus/config/config.properties'
