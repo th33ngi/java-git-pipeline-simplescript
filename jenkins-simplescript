@@ -1,11 +1,32 @@
+properties = null     
+
+def loadProperties() {
+    node {
+        checkout scm
+        properties = new Properties()
+        File propertiesFile = new File("${workspace}/config.properties")
+        properties.load(propertiesFile.newDataInputStream())
+        echo "Immediate one ${properties.browser}"
+    }
+}
+
 pipeline {
     agent any
     
     environment {
-        maven = 'maven_home'
+        maven = 'default'
     }
-    //test
+    
     stages {
+    	stage ('prepare') {
+            steps {
+                script {
+                    loadProperties()
+                    echo "Later one ${properties.browser}"
+                }
+            }
+        }
+        
         stage('Initialize') {
             steps {
                 echo '# starting the pipeline execution...'
@@ -15,7 +36,7 @@ pipeline {
         stage('Clone release') {
             steps {
                 echo '# cloning the application...'
-                git credentialsId: 'git_credentials', url: 'https://github.com/th33ngi/java-git-pipeline-simplescript.git'
+                git credentialsId: 'git-th3-ssh', url: 'https://github.com/th33ngi/java-git-pipeline-simplescript.git'
             }
         }
         
@@ -33,16 +54,16 @@ pipeline {
             }
         }
         
-        stage('Deploy release') { 
+        /*stage('Deploy release') { 
             steps {
                 echo '# deploying the application...'
                	bat 'mvn -B -DskipTests deploy -DaltDeploymentRepository=internal.repo::default::file:///C:/Users/Th33NGi/Documents/jenkins_deployments'
             }
-        }
+        }*/
     }
     
     post {
-        success {
+        /*success {
             mail to: 'qastacknotifications@gmail.com',
             subject: "Pipeline Job ${currentBuild.fullDisplayName} has FINISHED SUCCESSFULY",
             body: "CONGRATULATIONS! The pipeline job ${currentBuild.fullDisplayName} on ${env.BUILD_URL} has FINISHED WITHOUT ERRORS"
@@ -51,7 +72,7 @@ pipeline {
             mail to: 'qastacknotifications@gmail.com',
             subject: "Pipeline Job ${currentBuild.fullDisplayName} has FAILED",
             body: "ALERT! The pipeline job ${currentBuild.fullDisplayName} on ${env.BUILD_URL} has FINISHED WITH ERRORS"
-        }
+        }*/
         always {
             cleanWs()
         }
