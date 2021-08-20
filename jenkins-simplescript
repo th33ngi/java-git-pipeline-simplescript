@@ -1,11 +1,12 @@
-def properties = null     
-def prop = null
+def path = null     
+def props = null
+def setProp = null
 
 def loadProperties() {
     node {
         checkout scm
-        def path = './src/main/java/com/focus/config'
-        def props = readFile file: "${path}/config.properties"
+        path = './src/main/java/com/focus/config'
+        props = readFile file: "${path}/config.properties"
         def setProp = writeFile file: "config.properties", text: path
         //properties = readProperties file: './src/main/java/com/focus/config/config.properties'
         echo  "-current os: ${props.os}, -current browser: ${props.browser}, -current environment: ${props.env}"
