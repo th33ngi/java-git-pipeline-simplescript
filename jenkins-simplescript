@@ -11,7 +11,7 @@ def loadProperties() {
         //props = props.replace("${props.os}:${System}")
         //setProp = props.replace("${props.browser}:${Browser}")
         //props = props.replace("${props.env}:${Environment}")
-        writeFile(file: "${path}/config.properties", text: "${props.browser}:${Browser}", encoding: "UTF-8")
+        writeFile(file: "${path}/config.properties", text: "${Browser}", encoding: "UTF-8")
         //writeFile file: "${path}/config.properties", text: "${props.os}: ${System}, ${props.browser}: ${Browser}, ${props.env}: ${Environment}"
         echo  "-new os: ${props.os}, -new browser: ${props.browser}, -new environment: ${props.env}"        
     }
