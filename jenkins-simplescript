@@ -13,7 +13,8 @@ def properties = null
 def loadProperties() {
     node {
         checkout scm
-        properties = readProperties file: 'C:/Users/Administrator/AppData/Local/Jenkins/.jenkins/workspace/jenkins-properties-test@2/src/main/java/com/focus/config/config.properties'
+        properties = new Properties()
+        properties = readProperties file: '${workspace}@2/src/main/java/com/focus/config/config.properties'
         echo "Browser: ${properties.browser}"
     }
 }
@@ -51,7 +52,7 @@ pipeline {
             steps {
                 echo '# teting the application...'
                 loadProperties()
-                echo 'Browser: %properties.browser%'
+                echo 'Browser: ${properties.browser}'
                 bat 'mvn compile test' 
             }
         }
