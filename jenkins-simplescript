@@ -8,12 +8,16 @@ def loadProperties() {
         path = './src/main/java/com/focus/config'
         props = readProperties file: "${path}/config.properties"
         echo  "-current os: ${props.os}, -current browser: ${props.browser}, -current environment: ${props.env}"
+        writeFile file: './src/main/java/com/focus/config/config.properties', text: 'firefox'
+        /*writeProperties, file: './src/main/java/com/focus/config/config.properties', text: '''${System}
+		${Browser}
+		${Environment}'''*/
         //props = props.replace("${props.os}:${System}")
         //setProp = props.replace("${props.browser}:${Browser}")
         //props = props.replace("${props.env}:${Environment}")
-        writeFile encoding: 'UTF-8', file: './src/main/java/com/focus/config/config.properties', text: '''${System}
+        /*writeFile encoding: 'UTF-8', file: './src/main/java/com/focus/config/config.properties', text: '''${System}
 		${Browser}
-		${Environment}'''
+		${Environment}'''*/
         //writeFile([file: "${path}/config.properties", text: "props: ${Browser}"])
         //writeFile file: "${path}/config.properties", text: "${props.os}: ${System}, ${props.browser}: ${Browser}, ${props.env}: ${Environment}"
         echo  "-new os: ${props.os}, -new browser: ${props.browser}, -new environment: ${props.env}"        
