@@ -11,10 +11,12 @@ def loadProperties() {
         //writeFile file: './src/main/java/com/focus/config/config.properties', text: '%{Browser}'
         /*writeProperties, file: './src/main/java/com/focus/config/config.properties', text: '''${System} ${Browser} ${Environment}'''*/
 		
-		properties([parameters([choice(choices: ['return[', '\'windows\',', '\'linux\'', ']'], 
-		name: 'System'), choice(choices: ['return[', '\'chrome\',', '\'firefox\'', ']'], 
-		name: 'Browser'), choice(choices: ['return[', '\'qe\',', '\'dev\'', ']'], 
-		name: 'Environment')])])  
+		properties([parameters([
+        choice(choices: 'windows\nlinux', name: 'System'), 
+		choice(choices: 'chrome\nfirefox, name: 'Browser'), 
+		choice(choices: 'qe\ndev', name: 'Environment')
+    		])
+		])
     }
 }
 
