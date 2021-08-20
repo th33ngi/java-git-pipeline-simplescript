@@ -8,7 +8,7 @@ def loadProperties() {
         path = './src/main/java/com/focus/config'
         props = readProperties file: "${path}/config.properties"
         echo  "-current os: ${props.os}, -current browser: ${props.browser}, -current environment: ${props.env}"
-        writeFile file: './src/main/java/com/focus/config/config.properties', text: %Browser%
+        //writeFile file: './src/main/java/com/focus/config/config.properties', text: '%{Browser}'
         /*writeProperties, file: './src/main/java/com/focus/config/config.properties', text: '''${System} ${Browser} ${Environment}'''*/
         //props = props.replace("${props.os}:${System}")
         //setProp = props.replace("${props.browser}:${Browser}")
@@ -18,7 +18,19 @@ def loadProperties() {
 		${Environment}'''*/
         //writeFile([file: "${path}/config.properties", text: "props: ${Browser}"])
         //writeFile file: "${path}/config.properties", text: "${props.os}: ${System}, ${props.browser}: ${Browser}, ${props.env}: ${Environment}"
-        echo  "-new os: ${props.os}, -new browser: ${props.browser}, -new environment: ${props.env}"        
+        //echo  "-new os: ${props.os}, -new browser: ${props.browser}, -new environment: ${props.env}"
+        
+        writeFile file: './src/main/java/com/focus/config/config.properties', properties([parameters([[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'System', randomName: 'choice-parameter-67300277399200', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: 'return[\'error\']'], script: [classpath: [], sandbox: false, script: '''return[
+\'windows\',
+\'linux\'
+]''']]], [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'Browser', randomName: 'choice-parameter-67300280306400', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: 'return[\'error\']'], script: [classpath: [], sandbox: false, script: '''return[
+\'chrome\',
+\'firefox\'
+]''']]], [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'Environment', randomName: 'choice-parameter-67300291068399', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: 'return[\'error\']'], script: [classpath: [], sandbox: false, script: '''return[
+\'qe\',
+\'uat\',
+\'prod\'
+]''']]]])])  
     }
 }
 
