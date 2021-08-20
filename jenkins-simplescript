@@ -14,7 +14,7 @@ def setProp = null
     }
 }*/
 
-properties([parameters([choice(choices: 'windows\nlinux', name: 'System'), choice(choices: 'chrome\nfirefox', name: 'Browser'), choice(choices: 'qe\ndev', name: 'Environment')])])
+properties([parameters([choice(choices: ['return[', '\'windows\',', '\'linux\'', ']'], name: 'System'), choice(choices: ['return[', '\'chrome\',', '\'firefox\'', ']'], name: 'Browser'), choice(choices: ['return[', '\'qe\',', '\'dev\'', ']'], name: 'Environment')])])
 
 pipeline {
     agent any
@@ -48,7 +48,7 @@ pipeline {
         stage('Run test plan') { 
             steps {
                 echo '# teting the application...'
-                loadProperties()
+                //loadProperties()
                 bat 'mvn compile test' 
             }
         }
