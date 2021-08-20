@@ -4,11 +4,12 @@ def prop = null
 def loadProperties() {
     node {
         checkout scm
-        properties = readProperties file: './src/main/java/com/focus/config/config.properties'
-        echo  "-current os: ${properties.os}"
-        echo "-current browser: ${properties.browser}"
-        echo "-current environment: ${properties.env}"
-        //prop = "${properties.browser}"        
+        def path = './src/main/java/com/focus/config/config.properties'
+        def props = readFile file: "config.properties"
+        def setProp = writeFile file: "config.properties", text: path
+        //properties = readProperties file: './src/main/java/com/focus/config/config.properties'
+        echo  "-current os: ${props.os}, -current browser: ${props.browser}, -current environment: ${props.env}"
+        echo  "-new os: ${props.os}, -new browser: ${props.browser}, -new environment: ${props.env}"        
     }
 }
 
