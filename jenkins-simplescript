@@ -1,4 +1,4 @@
-properties = null     
+def properties = null     
 
 /*def loadProperties() {
     node {
@@ -13,7 +13,7 @@ properties = null
 def loadProperties() {
     node {
         checkout scm
-        properties = readProperties file: '/config.properties'
+        properties = readProperties file: 'config.properties'
         echo "Browser ${properties.browser}"
     }
 }
@@ -26,19 +26,11 @@ pipeline {
     }
     
     stages {
-    	/*stage ('prepare') {
-            steps {
-                script {
-                    loadProperties()
-                    echo "Browser ${properties.browser}"
-                }
-            }
-        }*/
         stage ('prepare') {
             steps {
                 script {
                     loadProperties()
-                    echo "Later one ${properties.browser}"
+                    echo "Browser ${properties.browser}"
                 }
             }
         }
