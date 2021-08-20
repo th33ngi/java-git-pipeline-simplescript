@@ -15,7 +15,7 @@ def loadProperties() {
         checkout scm
         properties = readProperties file: './src/main/java/com/focus/config/config.properties'
         echo "Browser: ${properties.browser}"
-        prop = ${properties.browser}
+        prop = "${properties.browser}"
         
     }
 }
@@ -53,30 +53,13 @@ pipeline {
             steps {
                 echo '# teting the application...'
                 loadProperties()
-                echo 'Browser: ${properties.browser}'
+                echo "Browser: ${properties.browser}"
                 bat 'mvn compile test' 
             }
         }
-        
-        /*stage('Deploy release') { 
-            steps {
-                echo '# deploying the application...'
-               	bat 'mvn -B -DskipTests deploy -DaltDeploymentRepository=internal.repo::default::file:///C:/Users/Th33NGi/Documents/jenkins_deployments'
-            }
-        }*/
     }
     
     post {
-        /*success {
-            mail to: 'qastacknotifications@gmail.com',
-            subject: "Pipeline Job ${currentBuild.fullDisplayName} has FINISHED SUCCESSFULY",
-            body: "CONGRATULATIONS! The pipeline job ${currentBuild.fullDisplayName} on ${env.BUILD_URL} has FINISHED WITHOUT ERRORS"
-        }
-        failure {
-            mail to: 'qastacknotifications@gmail.com',
-            subject: "Pipeline Job ${currentBuild.fullDisplayName} has FAILED",
-            body: "ALERT! The pipeline job ${currentBuild.fullDisplayName} on ${env.BUILD_URL} has FINISHED WITH ERRORS"
-        }*/
         always {
             cleanWs()
         }
