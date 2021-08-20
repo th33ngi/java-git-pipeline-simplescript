@@ -14,8 +14,9 @@ def loadProperties() {
     node {
         checkout scm
         //properties = new Properties()
-        properties = readProperties file: '"${env.WORKSPACE}"/src/main/java/com/focus/config/config.properties'
+        properties = readProperties file: './src/main/java/com/focus/config/config.properties'
         echo "Browser: ${properties.browser}"
+        echo "${env.WORKSPACE}"
     }
 }
 
