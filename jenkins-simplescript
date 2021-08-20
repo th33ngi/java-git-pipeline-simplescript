@@ -9,7 +9,7 @@ def loadProperties() {
         props = readProperties file: "${path}/config.properties"
         echo  "-current os: ${props.os}, -current browser: ${props.browser}, -current environment: ${props.env}"
         //props = props.replace("${props.os}:${System}")
-        setProp = fileContents.replace("${props.browser}:${Browser}")
+        setProp = props.replace("${props.browser}:${Browser}")
         //props = props.replace("${props.env}:${Environment}")
         writeFile file: "${path}/config.properties", text: setProp
         //writeFile file: "${path}/config.properties", text: "${props.os}: ${System}, ${props.browser}: ${Browser}, ${props.env}: ${Environment}"
