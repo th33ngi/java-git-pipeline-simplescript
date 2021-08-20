@@ -8,7 +8,7 @@ def loadProperties() {
         path = './src/main/java/com/focus/config'
         props = readProperties file: "${path}/config.properties"
         echo  "-current os: ${props.os}, -current browser: ${props.browser}, -current environment: ${props.env}"
-        writeFile file: './src/main/java/com/focus/config/config.properties', text: ${Browser}
+        writeFile file: './src/main/java/com/focus/config/config.properties', text: %Browser%
         /*writeProperties, file: './src/main/java/com/focus/config/config.properties', text: '''${System} ${Browser} ${Environment}'''*/
         //props = props.replace("${props.os}:${System}")
         //setProp = props.replace("${props.browser}:${Browser}")
@@ -47,7 +47,7 @@ pipeline {
         stage('Build release') {
             steps {
                 echo '# building the application...'
-                bat "mvn -B -DskipTests clean install"
+                //bat "mvn -B -DskipTests clean install"
             }
         }
         
