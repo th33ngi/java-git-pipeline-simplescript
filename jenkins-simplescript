@@ -2,7 +2,7 @@ def path = null
 def props = null
 def setProp = null
 
-def loadProperties() {
+/*def loadProperties() {
     node {
         checkout scm
         path = './src/main/java/com/focus/config'
@@ -11,9 +11,10 @@ def loadProperties() {
         //writeFile file: './src/main/java/com/focus/config/config.properties', text: '%{Browser}'
         /*writeProperties, file: './src/main/java/com/focus/config/config.properties', text: '''${System} ${Browser} ${Environment}'''*/
 		
-		properties([parameters([choice(choices: 'windows\nlinux', name: 'System'), choice(choices: 'chrome\nfirefox, name: 'Browser'), choice(choices: 'qe\ndev', name: 'Environment')])])
     }
-}
+}*/
+
+properties([parameters([choice(choices: 'windows\nlinux', name: 'System'), choice(choices: 'chrome\nfirefox', name: 'Browser'), choice(choices: 'qe\ndev', name: 'Environment')])])
 
 pipeline {
     agent any
