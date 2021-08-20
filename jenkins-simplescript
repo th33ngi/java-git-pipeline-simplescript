@@ -1,5 +1,5 @@
 
-properties([parameters([choice(choices: ['windows', 'linux'], name: 'System'), choice(choices: ['return[', '\'chrome\',', '\'firefox\'', ']'], name: 'Browser'), choice(choices: ['return[', '\'qe\',', '\'dev\'', ']'], name: 'Environment')])])
+properties([parameters([choice(choices: ['windows', 'linux'], name: 'System'), choice(choices: ['chrome','firefox'], name: 'Browser'), choice(choices: ['qe','dev'], name: 'Environment')])])
 
 pipeline {
     agent any
@@ -33,7 +33,7 @@ pipeline {
         stage('Run test plan') { 
             steps {
                 echo '# teting the application...'
-                bat 'mvn compile test' 
+                //bat 'mvn compile test' 
             }
         }
     }
