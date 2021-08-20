@@ -10,11 +10,12 @@ def prop = null
     }
 }*/
 
-def loadProperties() {
+def setProperties() {
     node {
         checkout scm
         properties = readProperties file: './src/main/java/com/focus/config/config.properties'
         echo "Browser: ${properties.browser}"
+        prop = ${properties.browser}"
     }
 }
 
@@ -50,8 +51,7 @@ pipeline {
         stage('Run test plan') { 
             steps {
                 echo '# teting the application...'
-                echo "loadProperties().${properties.browser}"
-                //echo "Browser: ${properties.browser}"
+                echo "Browser: ${prop}"
                 bat 'mvn compile test' 
             }
         }
