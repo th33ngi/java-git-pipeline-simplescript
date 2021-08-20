@@ -7,7 +7,11 @@ def loadProperties() {
         path = './src/main/java/com/focus/config'
         props = readProperties file: "${path}/config.properties"
         echo  "-current os: ${props.os}, -current browser: ${props.browser}, -current environment: ${props.env}"
-        writeFile file: "${path}/config.properties", text: "${props.os}: ${System}, ${props.browser}: ${Browser}, ${props.env}: ${Environment}"
+        props = props.replace("${props.os}:${System}")
+        props = props.replace("${props.browser}:${Browser}")
+        props = props.replace("${props.env}:${Environment}")
+        writeFile file: "${path}/config.properties", text: props
+        //writeFile file: "${path}/config.properties", text: "${props.os}: ${System}, ${props.browser}: ${Browser}, ${props.env}: ${Environment}"
         echo  "-new os: ${props.os}, -new browser: ${props.browser}, -new environment: ${props.env}"        
     }
 }
