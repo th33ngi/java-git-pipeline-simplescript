@@ -10,8 +10,6 @@ properties = null
     }
 }*/
 
-properties = null
-
 def loadProperties() {
     node {
         checkout scm
@@ -27,8 +25,8 @@ pipeline {
         maven = 'default'
     }
     
-    /*stages {
-    	stage ('prepare') {
+    stages {
+    	/*stage ('prepare') {
             steps {
                 script {
                     loadProperties()
