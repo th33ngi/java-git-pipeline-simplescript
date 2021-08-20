@@ -16,6 +16,7 @@ def loadProperties() {
         properties = readProperties file: './src/main/java/com/focus/config/config.properties'
         echo "Browser: ${properties.browser}"
         prop = ${properties.browser}
+        
     }
 }
 
@@ -51,7 +52,8 @@ pipeline {
         stage('Run test plan') { 
             steps {
                 echo '# teting the application...'
-                echo "Browser: ${prop}"
+                loadProperties()
+                echo 'Browser: ${properties.browser}'
                 bat 'mvn compile test' 
             }
         }
