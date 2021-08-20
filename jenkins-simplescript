@@ -5,9 +5,10 @@ def loadProperties() {
     node {
         checkout scm
         properties = readProperties file: './src/main/java/com/focus/config/config.properties'
-        echo "Browser: ${properties.browser}"
-        prop = "${properties.browser}"
-        
+        echo  "-current os: ${properties.os}"
+        echo "-current browser: ${properties.browser}"
+        echo "-current environment: ${properties.env}"
+        //prop = "${properties.browser}"        
     }
 }
 
@@ -44,7 +45,6 @@ pipeline {
             steps {
                 echo '# teting the application...'
                 loadProperties()
-                //echo "Browser: ${prop}"
                 bat 'mvn compile test' 
             }
         }
