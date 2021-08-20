@@ -7,7 +7,8 @@ def loadProperties() {
         checkout scm
         path = './src/main/java/com/focus/config'
         props = readFile file: "${path}/config.properties"
-        def setProp = writeFile file: "config.properties", text: path
+        echo "${props}"
+        setProp = writeFile file: "config.properties", text: path
         //properties = readProperties file: './src/main/java/com/focus/config/config.properties'
         echo  "-current os: ${props.os}, -current browser: ${props.browser}, -current environment: ${props.env}"
         echo  "-new os: ${props.os}, -new browser: ${props.browser}, -new environment: ${props.env}"        
