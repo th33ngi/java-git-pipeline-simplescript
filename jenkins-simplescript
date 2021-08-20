@@ -14,7 +14,7 @@ def loadProperties() {
     node {
         checkout scm
         properties = readProperties file: '/config.properties'
-        echo "Immediate one ${properties.browser}"
+        echo "Browser ${properties.browser}"
     }
 }
 
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     loadProperties()
-                    echo "Later one ${properties.browser}"
+                    echo "Browser ${properties.browser}"
                 }
             }
         }*/
